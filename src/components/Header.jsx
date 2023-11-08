@@ -1,5 +1,11 @@
+import "../Header.css";
+
 function Header() {
-    return <h1>This is the Header Component</h1>
+  return (
+    <header className="Header">
+      <h1>This is the Header Component</h1>
+    </header>
+  );
 }
 
-export default Header
+export default Header;

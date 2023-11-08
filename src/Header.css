@@ -3,3 +3,7 @@
     padding: 1rem;
     margin: 1rem;
 }
+
+.Header h1 {
+    color: black;
+}
