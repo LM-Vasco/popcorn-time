@@ -1,4 +1,5 @@
 import movies from "../data/movies.json";
+import Movie from "./Movie";
 import { useState } from "react";
 import "../Main.css";
 
@@ -12,50 +13,18 @@ function Main() {
 
     let message = "";
 
-    /* if(moviesToDisplay.length) {
-        message = <h1>List of Movies</h1>
-    }
-    else {
-        message = <h1>Sorry, no movies to display</h1>
-    } */
-
-    moviesToDisplay.length ? (message = <h1>List of Movies</h1>) : (message = <h1>Sorry, no movies to display</h1>);
+    moviesToDisplay.length
+        ? (message = <h1>Number of movies: {moviesToDisplay.length}</h1>)
+        : (message = <h1>Sorry, no movies to display</h1>);
 
     return (
-        <div>
+        <>
             {message}
 
-            {moviesToDisplay.map((movieObj) => {
-                return (
-                    <div key={movieObj.id} className="Main">
-                        {movieObj.imgURL ? (
-                            <img src={movieObj.imgURL} />
-                        ) : (
-                            <img src="https://dummyimage.com/182x268/ffffff/000000" />
-                        )}
-
-                        <h2 className="card">
-                            {movieObj.title} ({movieObj.year})
-                        </h2>
-                        <h3>Rating: {movieObj.rating}</h3>
-                        {movieObj.rating > 8 && <p>RECOMMENDED</p>}
-                        {movieObj.genres.map((genre) => {
-                            return <p>Genres: {genre}</p>;
-                        })}
-                        
-                        <button
-                            onClick={() => {
-                                deleteMovie(movieObj.id);
-                            }}
-                        >
-                            Delete Movie
-                        </button>
-                        <br></br>
-                        <br></br>
-                    </div>
-                );
+            {moviesToDisplay.map(function (movieObj) {
+                return <Movie key={movieObj.id} movieDetails={movieObj} title="hello" callbackToDelete={deleteMovie} />;
             })}
-        </div>
+        </>
     );
 }
 
