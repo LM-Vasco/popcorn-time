@@ -14,7 +14,7 @@ function Movie(props){
 
             <button
                 onClick={function () {
-                    props.callbackToDelete(props.movieDetails.id);
+                    props.callbackToDelete(props.movieDetails.title);
                 }}>
                 Delete
             </button>

@@ -5,10 +5,10 @@ function Main(props){
     return (
         <>
 
-            {props.moviesArr.map(function(movieObj){
+            {props.moviesArr.map(function(movieObj, index){
                 return (
                     <Movie 
-                        key={movieObj.id}
+                        key={index}
                         movieDetails={movieObj}
                         callbackToDelete={props.callbackToDelete}
                         />

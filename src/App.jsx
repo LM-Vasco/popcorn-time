@@ -12,9 +12,9 @@ function App() {
     const [rating, setRating] = useState("");
     const [imageUrl, setImageUrl] = useState("");
 
-    const deleteMovie = (movieId) => {
+    const deleteMovie = (movieTitle) => {
         const newList = moviesToDisplay.filter((movieDetails) => {
-            return movieDetails.id !== movieId;
+            return movieDetails.title !== movieTitle;
         });
         setMoviesToDisplay(newList);
     };
@@ -26,7 +26,7 @@ function App() {
         const newMovie = {
             title: title,
             rating: rating,
-            imgURL: imageUrl
+            imgURL: imageUrl,
         };
 
         // update the list of movies
@@ -45,35 +45,47 @@ function App() {
 
             <section className="box">
                 <form onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        name="title"
-                        placeholder="enter the title"
-                        value={title}
-                        onChange={(e) => {
-                            setTitle(e.target.value);
-                        }}
-                    />
+                    <label>
+                        Title:
+                        <input
+                            type="text"
+                            name="title"
+                            placeholder="enter the title"
+                            required={true}
+                            value={title}
+                            onChange={(e) => {
+                                setTitle(e.target.value);
+                            }}
+                        />
+                    </label>
+                    <label>
+                        Rating:
+                        <input
+                            type="number"
+                            name="rating"
+                            required={true}
+                            min={1}
+                            max={10}
+                            placeholder="enter the rating"
+                            value={rating}
+                            onChange={(e) => {
+                                setRating(e.target.value);
+                            }}
+                        />
+                    </label>
 
-                    <input
-                        type="number"
-                        name="rating"
-                        placeholder="enter the rating"
-                        value={rating}
-                        onChange={(e) => {
-                            setRating(e.target.value);
-                        }}
-                    />
-
-                    <input
-                        type="url"
-                        name="imageUrl"
-                        placeholder="enter the image URL"
-                        value={imageUrl}
-                        onChange={(e) => {
-                            setImageUrl(e.target.value);
-                        }}
-                    />
+                    <label>
+                        Image URL:
+                        <input
+                            type="url"
+                            name="imageUrl"
+                            placeholder="enter the image URL"
+                            value={imageUrl}
+                            onChange={(e) => {
+                                setImageUrl(e.target.value);
+                            }}
+                        />
+                    </label>
 
                     <button>Create movie</button>
                 </form>
