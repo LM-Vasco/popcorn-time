@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function MovieSummary(props){
     return(
         <section className="Movie card">
@@ -12,9 +14,13 @@ function MovieSummary(props){
 
             { props.movieDetails.rating > 8 && <p>RECOMMENDED</p>}
 
+            <p>
+                <Link to={`/movies/${props.movieDetails.id}`}>More Details</Link>
+            </p>
+
             <button
                 onClick={function () {
-                    props.callbackToDelete(props.movieDetails.title);
+                    props.callbackToDelete(props.movieDetails.id);
                 }}>
                 Delete
             </button>

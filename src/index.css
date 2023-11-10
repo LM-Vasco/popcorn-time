@@ -55,15 +55,16 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.box, .card {
+  border: 1px solid #fff;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.badge {
+  background-color: #ddd;
+  color: #333;
+  margin: 0.5em;
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
 }

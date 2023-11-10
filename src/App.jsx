@@ -1,53 +1,61 @@
-import "./App.css";
-import { useState } from "react";
-import movies from "./data/movies.json";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import MovieList from "./components/MovieList";
-import AddMovie from "./components/AddMovie";
+import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import movies from "./data/movies.json";
+import './App.css'
+import Footer from './components/Footer'
+import Header from './components/Header'
+import MovieList from './components/MovieList'
+import AddMovie from './components/AddMovie';
+import About from './components/About';
+import MovieDetails from './components/MovieDetails';
+
 
 function App() {
-    const [moviesToDisplay, setMoviesToDisplay] = useState(movies);
 
-    const addNewMovie = (newMovie) => {
-        // find out id for the movie that we want to add
-        const movieIds = moviesToDisplay.map(function (elm) {
-            return elm.id;
-        });
-        const maxId = Math.max(...movieIds);
-        const nextId = maxId + 1;
+  const [moviesToDisplay, setMoviesToDisplay] = useState(movies);
 
-        // prepare an object with the details of the new movie (inc. the id)
-        const movieDetails = {
-            ...newMovie,
-            id: nextId,
-        };
 
-        const newList = [movieDetails, ...moviesToDisplay];
-        setMoviesToDisplay(newList);
-    };
+  const addNewMovie = (newMovie) => {
+    // find out id for the movie that we want to add
+    const movieIds = moviesToDisplay.map(function (elm) {
+      return elm.id;
+    });
+    const maxId = Math.max(...movieIds);
+    const nextId = maxId + 1;
 
-    const deleteMovie = (movieId) => {
-        const newList = moviesToDisplay.filter((movieDetails) => {
-            return movieDetails.id !== movieId;
-        });
-        setMoviesToDisplay(newList);
-    };
+    // prepare an object with the details of the new movie (inc. the id)
+    const movieDetails = {
+      ...newMovie,
+      id: nextId
+    }
 
-    return (
-        <>
-            <Header numberOfMovies={moviesToDisplay.length} />
-            <AddMovie callbackToAddMovie={addNewMovie} />
+    const newList = [movieDetails, ...moviesToDisplay];
+    setMoviesToDisplay(newList);
+  }
 
-            <Routes>
-                <Route path="/" element={<MovieList moviesArr={moviesToDisplay} callbackToDelete={deleteMovie} />} />
-                <Route path="/about" element={<p>This is the ABOUT PAGE</p>} />
-            </Routes>
+  
+  const deleteMovie = (movieId) => {
+    const newList = moviesToDisplay.filter((movieDetails) => {
+      return movieDetails.id !== movieId;
+    });
+    setMoviesToDisplay(newList);
+  }
 
-            <Footer />
-        </>
-    );
+
+  return (
+    <>
+      <Header numberOfMovies={moviesToDisplay.length} />
+      <AddMovie callbackToAddMovie={addNewMovie} />
+
+      <Routes>
+        <Route path='/' element={<MovieList moviesArr={moviesToDisplay} callbackToDelete={deleteMovie} />} />
+        <Route path='/movies/:movieId' element={<MovieDetails moviesArr={moviesToDisplay} />}  />
+        <Route path='/about' element={<About />} />
+      </Routes>
+
+      <Footer />
+    </>
+  )
 }
 
-export default App;
+export default App
