@@ -1,4 +1,4 @@
-function Movie(props){
+function MovieSummary(props){
     return(
         <section className="Movie card">
 
@@ -23,4 +23,4 @@ function Movie(props){
     );
 }
 
-export default Movie;
+export default MovieSummary;

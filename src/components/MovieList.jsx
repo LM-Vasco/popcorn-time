@@ -1,13 +1,13 @@
-import Movie from "./Movie";
+import MovieSummary from "./MovieSummary";
 
-function Main(props){
+function MovieList(props){
 
     return (
         <>
 
             {props.moviesArr.map(function(movieObj, index){
                 return (
-                    <Movie 
+                    <MovieSummary 
                         key={index}
                         movieDetails={movieObj}
                         callbackToDelete={props.callbackToDelete}
@@ -19,4 +19,4 @@ function Main(props){
     );
 }
 
-export default Main;
+export default MovieList;

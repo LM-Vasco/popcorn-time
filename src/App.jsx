@@ -3,7 +3,7 @@ import movies from "./data/movies.json";
 import './App.css'
 import Footer from './components/Footer'
 import Header from './components/Header'
-import Main from './components/Main'
+import MovieList from './components/MovieList'
 import AddMovie from './components/AddMovie';
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
     <>
       <Header numberOfMovies={moviesToDisplay.length} />
       <AddMovie callbackToAddMovie={addNewMovie} />
-      <Main moviesArr={moviesToDisplay} callbackToDelete={deleteMovie}  />
+      <MovieList moviesArr={moviesToDisplay} callbackToDelete={deleteMovie}  />
       <Footer />
     </>
   )
